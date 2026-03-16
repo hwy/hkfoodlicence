@@ -1,32 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hong Kong Engineering and Food Licence Company Ltd</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        nav { background-color: #333; color: white; padding: 15px; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>香港餐飲工程及牌照有限公司 | 裝修完即出牌 零煩惱</title>
+  <meta name="description" content="專業餐飲裝修 + 飲食牌照一站式服務，保證取得食環署牌照，超過10年經驗，成功率100%。">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #1e3a8a;      /* 深藍 */
+      --secondary: #ea580c;     /* 橙 */
+      --light: #f8fafc;
+      --dark: #0f172a;
+      --gray: #64748b;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+      color: var(--dark);
+      background: var(--light);
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* 導航 */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--secondary); }
+
+    /* Hero */
+    .hero {
+      height: 90vh;
+      min-height: 600px;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                  url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-top: 80px; /* 頂部留空間給 fixed nav */
+    }
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.6rem;
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #c2410c;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(234,88,12,0.3);
+    }
+
+    /* 保證區 */
+    .guarantee {
+      padding: 100px 0;
+      background: white;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--primary);
+    }
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+    .guarantee-card {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 12px;
+      background: #f8fafc;
+      transition: all 0.3s;
+    }
+    .guarantee-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    }
+    .guarantee-card i {
+      font-size: 3.5rem;
+      color: var(--secondary);
+      margin-bottom: 1.2rem;
+    }
+    .guarantee-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+
+    /* 流程 */
+    .process {
+      padding: 100px 0;
+      background: var(--light);
+    }
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .step {
+      flex: 1;
+      min-width: 240px;
+      max-width: 280px;
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 0 auto 1.2rem;
+    }
+
+    /* 頁尾 */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 30px;
+      text-align: center;
+    }
+    .contact-info {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-info a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      margin: 20px 0;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.6rem; }
+      .hero p { font-size: 1.3rem; }
+      .nav-links { gap: 20px; font-size: 0.95rem; }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="admin.html">Admin</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <h1>Welcome to Hong Kong Engineering and Food Licence Company Ltd</h1>
-    <p>We are dedicated to providing top-notch services and information related to food licensing in Hong Kong.</p>
-    <h2>Our Services</h2>
-    <ul>
-        <li>Consultation for Food Licence Applications</li>
-        <li>Guidance on Food Safety Regulations</li>
-        <li>Support for Business Licensing</li>
-    </ul>
-    <footer>
-        <p>&copy; 2026 Hong Kong Engineering and Food Licence Company Ltd</p>
-        <p>Date and Time: 2026-03-16 07:32:20 UTC</p>
-    </footer>
+
+  <!-- 導航 -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">香港餐飲工程及牌照</div>
+        <div class="nav-links">
+          <a href="index.html">首頁</a>
+          <a href="about.html">關於我們</a>
+          <a href="services.html">服務範圍</a>
+          <a href="guarantee.html">保證出牌</a>
+          <a href="cases.html">案例展示</a>
+          <a href="contact.html">聯絡我們</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>香港餐飲工程及牌照專家</h1>
+      <p>裝修完 · 即出牌 · 零煩惱</p>
+      <a href="contact.html" class="btn">免費諮詢報價</a>
+    </div>
+  </section>
+
+  <!-- 我們的保證 -->
+  <section class="guarantee">
+    <div class="container">
+      <h2 class="section-title">我們的保證</h2>
+      <div class="guarantee-grid">
+        <div class="guarantee-card">
+          <i class="fas fa-hard-hat"></i>
+          <h3>專業工程團隊</h3>
+          <p>超過10年餐飲裝修經驗</p>
+        </div>
+        <div class="guarantee-card">
+          <i class="fas fa-certificate"></i>
+          <h3>牌照專家</h3>
+          <p>熟悉食環署最新要求</p>
+        </div>
+        <div class="guarantee-card">
+          <i class="fas fa-clock"></i>
+          <h3>準時交貨</h3>
+          <p>工程期明確承諾</p>
+        </div>
+        <div class="guarantee-card">
+          <i class="fas fa-trophy"></i>
+          <h3>保證成功</h3>
+          <p>不成功不收費</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服務流程 -->
+  <section class="process">
+    <div class="container">
+      <h2 class="section-title">服務流程</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>免費諮詢</h3>
+          <p>了解店鋪位置、牌照類別</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>度身設計</h3>
+          <p>工程規劃＋模擬圖</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>代辦申請</h3>
+          <p>同步進行裝修及文件處理</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>成功開業</h3>
+          <p>交匙當日已可營業</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾 -->
+  <footer>
+    <div class="container">
+      <div class="contact-info">
+        聯絡人：Kit　電話：<a href="tel:+85262852652">6285 2652</a>
+      </div>
+      <a href="https://wa.me/85262852652?text=你好%20Kit，我想查詢餐飲工程及牌照服務" 
+         target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> WhatsApp 即時查詢
+      </a>
+      <p style="margin-top:40px; opacity:0.7;">
+        © 2025 Hong Kong Engineering and Food Licence Company Ltd<br>
+        香港餐飲工程及牌照有限公司
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>
