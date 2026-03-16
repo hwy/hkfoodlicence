@@ -1,64 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <style>
-        /* Styles for drag-and-drop area */
-        .drop-area {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - 案例管理（本地版）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-panel { max-width: 900px; margin: 120px auto 80px; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+    form { display: grid; gap: 20px; }
+    input, textarea, select { padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; }
+    #preview-area { margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px; }
+  </style>
 </head>
 <body>
-    <h1>Admin Login</h1>
-    <form id="loginForm" method="POST" action="/admin/login">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
 
-    <h2>Upload Renovation Photos</h2>
-    <div class="drop-area" id="drop-area">
-        <p>Drag and drop your images here or click to upload</p>
-        <input type="file" id="fileElem" multiple accept="image/*" style="display:none;">
-        <label for="fileElem">Upload Photos</label>
-    </div>
+<header><!-- 同上 --></header>
 
-    <script>
-        // JavaScript for handling drag-and-drop functionality
-        const dropArea = document.getElementById('drop-area');
+<div class="admin-panel">
+  <h1 style="text-align: center; margin-bottom: 40px;">後台 - 新增案例</h1>
 
-        dropArea.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            dropArea.classList.add('highlight');
-        });
+  <form id="caseForm">
+    <input type="text" id="title" placeholder="案例名稱（例如：旺角茶餐廳）" required>
+    <select id="category">
+      <option value="">分類</option>
+      <option value="茶餐廳">茶餐廳</option>
+      <option value="咖啡店">咖啡店</option>
+      <option value="酒吧">酒吧</option>
+      <option value="外賣">外賣店</option>
+    </select>
+    <input type="file" id="images" multiple accept="image/*">
+    <div id="imagePreview" style="display: flex; flex-wrap: wrap; gap: 15px; margin: 15px 0;"></div>
+    <textarea id="details" rows="5" placeholder="工程細節（面積、施工期、主要項目...）"></textarea>
+    <input type="text" id="licence" placeholder="牌照類型（例如：普通食肆牌照）">
+    <textarea id="comment" rows="3" placeholder="客戶評語（可選）"></textarea>
+    <button type="submit" class="btn" style="padding: 16px;">儲存至本地（刷新仍保留）</button>
+  </form>
 
-        dropArea.addEventListener('dragleave', () => {
-            dropArea.classList.remove('highlight');
-        });
+  <div id="preview-area">
+    <h3>已儲存案例（本地）</h3>
+    <div id="savedCases"></div>
+  </div>
+</div>
 
-        dropArea.addEventListener('drop', (event) => {
-            event.preventDefault();
-            dropArea.classList.remove('highlight');
-            const files = event.dataTransfer.files;
-            handleFiles(files);
-        });
+<script>
+  const form = document.getElementById('caseForm');
+  const preview = document.getElementById('imagePreview');
+  const saved = document.getElementById('savedCases');
 
-        dropArea.addEventListener('click', () => {
-            document.getElementById('fileElem').click();
-        });
+  let files = [];
 
-        function handleFiles(files) {
-            // Code to handle file uploads
-            for (let i = 0; i < files.length; i++) {
-                console.log(files[i].name);
-            }
-        }
-    </script>
+  document.getElementById('images').addEventListener('change', e => {
+    files = Array.from(e.target.files);
+    preview.innerHTML = '';
+    files.forEach(file => {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.style.width = '120px'; img.style.height = '120px'; img.style.objectFit = 'cover'; img.style.borderRadius = '8px';
+      preview.appendChild(img);
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('已儲存至瀏覽器 localStorage（僅限本機測試）\n正式網站建議使用後台系統（如 Firebase / Supabase）');
+    form.reset();
+    preview.innerHTML = '';
+    files = [];
+  });
+
+  // 顯示已儲存（這裡只是示範，實際可擴充讀取 localStorage）
+  saved.innerHTML = '<p style="color:#666;">目前無儲存案例（本地儲存功能待擴充）</p>';
+</script>
+
+<footer><!-- 同上 --></footer>
+
 </body>
 </html>
