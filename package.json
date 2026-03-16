@@ -1,0 +1,1 @@
+{\n  \"name\": \"hkfoodlicence\",\n  \"description\": \"Hong Kong Engineering and Food Licence Company\",\n  \"version\": \"1.0.0\",\n  \"scripts\": {\n    \"start\": \"node server.js\",\n    \"dev\": \"nodemon server.js\"\n  }\n}
