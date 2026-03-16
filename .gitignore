@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Cache
+cache/
