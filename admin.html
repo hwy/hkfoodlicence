@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        /* Styles for drag-and-drop area */
+        .drop-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Login</h1>
+    <form id="loginForm" method="POST" action="/admin/login">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <h2>Upload Renovation Photos</h2>
+    <div class="drop-area" id="drop-area">
+        <p>Drag and drop your images here or click to upload</p>
+        <input type="file" id="fileElem" multiple accept="image/*" style="display:none;">
+        <label for="fileElem">Upload Photos</label>
+    </div>
+
+    <script>
+        // JavaScript for handling drag-and-drop functionality
+        const dropArea = document.getElementById('drop-area');
+
+        dropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropArea.classList.add('highlight');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('highlight');
+        });
+
+        dropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropArea.classList.remove('highlight');
+            const files = event.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        dropArea.addEventListener('click', () => {
+            document.getElementById('fileElem').click();
+        });
+
+        function handleFiles(files) {
+            // Code to handle file uploads
+            for (let i = 0; i < files.length; i++) {
+                console.log(files[i].name);
+            }
+        }
+    </script>
+</body>
+</html>
