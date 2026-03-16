@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Case Studies Gallery</h1>
+    <nav>
+        <ul>
+            <li><button onclick="filterSelection('all')"> All </button></li>
+            <li><button onclick="filterSelection('tea')"> Tea Restaurants </button></li>
+            <li><button onclick="filterSelection('coffee')"> Coffee Shops </button></li>
+            <li><button onclick="filterSelection('bars')"> Bars </button></li>
+            <li><button onclick="filterSelection('takeaway')"> Takeaway Shops </button></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="gallery">
+        <div class="case" data-category="tea">
+            <img src="before.jpg" alt="Before Image">
+            <img src="after.jpg" alt="After Image">
+            <div class="case-details">
+                <h3>Tea Restaurant Name</h3>
+                <p>Construction Period: Jan 2021 - Mar 2021</p>
+                <p>Area: 500 sq ft</p>
+                <p>License Type: Food Business License</p>
+                <blockquote>"Amazing transformation!" - Customer Name</blockquote>
+            </div>
+        </div>
+        <!-- Repeat similar blocks for other cases -->
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 HK Food Licence. All Rights Reserved.</p>
+</footer>
+<script>
+function filterSelection(category) {
+    const cases = document.getElementsByClassName('case');
+    if (category === 'all') category = '';
+    for (let i = 0; i < cases.length; i++) {
+        cases[i].style.display = cases[i].className.indexOf(category) > -1 ? 'block' : 'none';
+    }
+}
+</script>
+</body>
+</html>
