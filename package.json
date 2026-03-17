@@ -3,21 +3,15 @@
   "description": "Hong Kong Engineering and Food Licence Company",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "engines": {
-    "node": ">=18"
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
-    // 這裡放你專案真正需要的套件，例如：
-    // "express": "^4.18.2",
-    // "dotenv": "^16.0.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
   }
 }
